@@ -24,7 +24,7 @@ module.exports = function (dbtype, settings) {
 
 	var daModuleName = "../../dataaccess/"+dbtype+"/index.js";
 	logger.info("Use dataaccess:"+daModuleName);
-	var dataaccess = new require(daModuleName)(settings);
+	var dataaccess = require(daModuleName)(settings);
 	
 	module.dbNames = dataaccess.dbNames
 	

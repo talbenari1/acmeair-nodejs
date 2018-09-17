@@ -40,11 +40,11 @@ if (authServiceLocation)
 	else
 		authModule= authServiceLocation;
 	
-	authService = new require('./'+authModule+'/index.js')(settings);
+	authService = require('./'+authModule+'/index.js')(settings);
 	if (authService && "true"==process.env.enableHystrix) // wrap into command pattern
 	{
 		logger.info("Enabled Hystrix");
-		authService = new require('./acmeaircmd/index.js')(authService, settings);
+		authService = require('./acmeaircmd/index.js')(authService, settings);
 	}
 }
 
@@ -62,8 +62,8 @@ if(process.env.VCAP_SERVICES){
 }
 logger.info("db type=="+dbtype);
 
-var routes = new require('./routes/index.js')(dbtype, authService,settings);
-var loader = new require('./loader/loader.js')(routes, settings);
+var routes = require('./routes/index.js')(dbtype, authService,settings);
+var loader = require('./loader/loader.js')(routes, settings);
 
 // Setup express with 4.0.0
 
